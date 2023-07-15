@@ -3,6 +3,10 @@
  * @param {number[][]} dislikes
  * @return {boolean}
  */
+// 判断是否为环形图,如果是,则返回false
+// 如果否,则返回true
+
+// 可以使用并查集判断
 var possibleBipartition = function(n, dislikes) {
   let father = new Array(4100).fill(-1)
   const find = (x) => {
