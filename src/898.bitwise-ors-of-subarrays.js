@@ -14,7 +14,7 @@ var subarrayBitwiseORs = function(arr) {
 
     cur = next
     cur.add(item)
-    // console.log(...cur)
+    console.log(cur)
     for (let key of cur) {
       ans.add(key)
     }
