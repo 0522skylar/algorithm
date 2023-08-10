@@ -34,5 +34,22 @@ const qSort = (arr, s, e) => {
   }
 }
 
+// 选择排序
+const selectSort = (arr) => {
+  let min = 0
+  for (let i = 0; i < arr.length; i++) {
+    min = i
+    for (let j = i; j < arr.length; j++) {
+      if (arr[j] < arr[i]) {
+        min = j
+      }
+    }
+    if (min != i) {
+      let temp = arr[i]
+      arr[i] = arr[min]
+      arr[min] = temp
+    }
+  }
+}
 
 console.log(sortArray([4,2,1,5,6,2]))
