@@ -7,7 +7,8 @@ var sortArray = function(nums) {
   // qSort(nums, 0, nums.length - 1)
   // insertSort(nums)
   // shellSort(nums)
-  bucketSort(nums)
+  // bucketSort(nums)
+  countSort(nums)
   return nums
 };
 
@@ -118,6 +119,44 @@ const bucketSort = (arr) => {
     for (let j = bk[i]; j > 0; j--) {
       arr[ar++] = i - 50000
     }
+  }
+}
+
+
+/**
+ * 基数排序 - 桶排序的改进版，桶的大小固定为10，减少了内存空间的开销。首先，找出待排序列中得最大元素max，并依次按max的低位到高位对所有元素排序；
+ * 桶元素10个元素的大小即为待排序数列元素对应数值为相等元素的个数，即每次遍历待排序数列，桶将其按对应数值位大小分为了10个层级，桶内元素值得和为待排序数列元素个数。
+ * @param arr
+ */
+
+const countSort = (arr) => {
+  let bk = new Array(19).fill(0)
+  let max = Number.MIN_VALUE
+  for (let i = 0; i < arr.length; i++) {
+    if (max < Math.abs(arr[i])) {
+      max = arr[i]
+    }
+  }
+  if (max < 0) {
+    max = -max;
+  }
+  max = max.toString().length
+  let bd = new Array(19).fill(0).map(() => new Array(arr.length).fill(0))
+  for (let k = 0; k < max; k++) {
+    for (let i = 0; i < arr.length; i++) {
+      let val = arr[i] / (Math.pow(10, k) % 10)
+      bd[val + 9][bk[val + 9] ++] = arr[i]
+    }
+    let fl = 0
+    for (let l = 0; l < 19; l++) {
+      if (bk[l] != 0) {
+        for (let s = 0; s < bk[l]; s++) {
+          arr[fl++] = bd[l][s]
+        }
+      }
+    }
+    bk = new Array(19).fill(0)
+    fl = 0
   }
 }
 
