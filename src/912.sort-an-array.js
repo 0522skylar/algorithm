@@ -4,7 +4,8 @@
  */
 var sortArray = function(nums) {
   // nums.sort((a, b) => a - b)
-  qSort(nums, 0, nums.length - 1)
+  // qSort(nums, 0, nums.length - 1)
+  insertSort(nums)
   return nums
 };
 
@@ -48,6 +49,20 @@ const selectSort = (arr) => {
       let temp = arr[i]
       arr[i] = arr[min]
       arr[min] = temp
+    }
+  }
+}
+
+const insertSort = (arr) => {
+  for (let i = 1; i < arr.length; i++) {
+    let res = arr[i]
+    for (let j = i - 1; j >= 0; j--) {
+      if (res < arr[j]) {
+        arr[j + 1] = arr[j]
+        arr[j] = res
+      } else {
+        break
+      }
     }
   }
 }
