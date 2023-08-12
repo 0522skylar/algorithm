@@ -6,7 +6,8 @@ var sortArray = function(nums) {
   // nums.sort((a, b) => a - b)
   // qSort(nums, 0, nums.length - 1)
   // insertSort(nums)
-  shellSort(nums)
+  // shellSort(nums)
+  bucketSort(nums)
   return nums
 };
 
@@ -97,6 +98,26 @@ const shellSort = (arr) => {
       }
     }
     d >>= 1
+  }
+}
+
+/**
+ * 桶排序 - 实现线性排序，但当元素间值得大小有较大差距时会带来内存空间的较大浪费。首先，找出待排序列中得最大元素max，申请内存大小为max + 1的桶（数组）并初始化为0；然后，遍历排序数列，并依次将每个元素作为下标的桶元素值自增1；
+ * 最后，遍历桶元素，并依次将值非0的元素下标值载入排序数列（桶元素>1表明有值大小相等的元素，此时依次将他们载入排序数列），遍历完成，排序数列便为有序数列。
+ *
+ * 时间复杂度：O(x*N) 　　稳定性：稳定
+ * @param arr
+ */
+const bucketSort = (arr) => {
+  let bk = new Array(50000 * 2 + 1).fill(0)
+  for (let i = 0; i < arr.length; i++) {
+    bk[arr[i] + 50000] += 1;
+  }
+  let ar = 0
+  for (let i = 0; i < bk.length; i++) {
+    for (let j = bk[i]; j > 0; j--) {
+      arr[ar++] = i - 50000
+    }
   }
 }
 
