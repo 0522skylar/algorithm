@@ -10,8 +10,11 @@ var sortArray = function(nums) {
   // bucketSort(nums)
   // countSort(nums)
   // bubblSort(nums)
-  heapSort(nums)
-  return nums
+  // heapSort(nums)
+  const n = nums.length;
+  if (n < 2) return nums;
+  return mergeSort(nums);
+  // return nums
 };
 
 // 快速排序
@@ -163,6 +166,7 @@ const countSort = (arr) => {
 }
 
 /**
+ * 冒泡排序
  * 时间复杂度：平均 O(n²)、最好 O(n²)、最坏 O(n²)
 空间复杂度：O(1)
 In-place 内排序
@@ -184,6 +188,7 @@ const bubblSort = (arr) => {
 
 
 /**
+ * 堆排序
  * 时间复杂度：平均 O(nlogN)、最好 O(nlogN)、最坏 O(nlogN)
 空间复杂度：O(1)
 In-place 内排序
@@ -220,5 +225,45 @@ const heapSort = (arr) => {
     maxHeapify(arr, 0, i);
   }
   return arr;
+}
+
+
+/**
+ * 归并排序
+ * 时间复杂度：平均 O(nlogN)、最好 O(nlogN)、最坏 O(nlogN)
+空间复杂度：O(N) 空间换时间
+Out-place 外排序
+稳定
+ * @param {*} arr 
+ * @returns 
+ */
+function mergeSort(nums) { 
+  const n = nums.length;
+  if (n <= 1) {
+    return nums;
+  }
+  const mid = n >> 1;
+  return merge(mergeSort(nums.slice(0, mid)), mergeSort(nums.slice(mid)));
+}
+function merge(arr1, arr2) {
+  const m = arr1.length;
+  const n = arr2.length;
+  let i = 0; 
+  let j = 0;
+  const ans = [];
+  while (i < m && j < n) {
+    if (arr1[i] < arr2[j]) {
+      ans.push(arr1[i++]);
+    } else {
+      ans.push(arr2[j++]);
+    }
+  }
+  while (i < m) {
+    ans.push(arr1[i++]);
+  }
+  while (j < n) {
+    ans.push(arr2[j++]);
+  }
+  return ans;
 }
 console.log(sortArray([4,2,1,5,6,2]))
