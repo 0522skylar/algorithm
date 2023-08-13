@@ -9,7 +9,8 @@ var sortArray = function(nums) {
   // shellSort(nums)
   // bucketSort(nums)
   // countSort(nums)
-  bubblSort(nums)
+  // bubblSort(nums)
+  heapSort(nums)
   return nums
 };
 
@@ -181,4 +182,43 @@ const bubblSort = (arr) => {
   return arr;
 }
 
+
+/**
+ * 时间复杂度：平均 O(nlogN)、最好 O(nlogN)、最坏 O(nlogN)
+空间复杂度：O(1)
+In-place 内排序
+不稳定
+ * @param {*} arr 
+ * @returns 
+ */
+const heapSort = (arr) => {
+  function buildMaxHeap(nums) {
+    const n = nums.length;
+    for (let i = n >> 1; i >= 0; i--) {
+      maxHeapify(nums, i, n);
+    }
+  }
+  function maxHeapify(nums, index, heapSize) {
+    let largest = index;
+    let l = index * 2 + 1;
+    let r = l + 1;
+    if (l < heapSize && nums[l] > nums[largest]) {
+      largest = l;
+    }
+    if (r < heapSize && nums[r] > nums[largest]) {
+      largest = r;
+    }
+    if (largest !== index) {
+      [nums[largest], nums[index]] = [nums[index], nums[largest]];
+      maxHeapify(nums, largest, heapSize);
+    }
+  }
+
+  buildMaxHeap(arr);
+  for (let i = arr.length - 1; i > 0; i--) {
+    [arr[i], arr[0]] = [arr[0], arr[i]];
+    maxHeapify(arr, 0, i);
+  }
+  return arr;
+}
 console.log(sortArray([4,2,1,5,6,2]))
