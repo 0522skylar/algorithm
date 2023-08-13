@@ -8,7 +8,8 @@ var sortArray = function(nums) {
   // insertSort(nums)
   // shellSort(nums)
   // bucketSort(nums)
-  countSort(nums)
+  // countSort(nums)
+  bubblSort(nums)
   return nums
 };
 
@@ -158,6 +159,26 @@ const countSort = (arr) => {
     bk = new Array(19).fill(0)
     fl = 0
   }
+}
+
+/**
+ * 时间复杂度：平均 O(n²)、最好 O(n²)、最坏 O(n²)
+空间复杂度：O(1)
+In-place 内排序
+稳定
+ * @param {*} arr 
+ * @returns 
+ */
+const bubblSort = (arr) => {
+  const { length } = arr;
+  for (let i = 0; i < length; i++) {
+    for (let j = 0; j < length - 1 - i; j++) {
+      if (arr[j] > arr[j + 1]) {
+        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+      }
+    }
+  }
+  return arr;
 }
 
 console.log(sortArray([4,2,1,5,6,2]))
