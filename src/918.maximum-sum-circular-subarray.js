@@ -11,8 +11,8 @@ var maxSubarraySumCircular = function(nums) {
   let mndp = mn
   let mxdp = mx
   for (let i = 0; i < n; i++) {
-    mndp = Math.min(mndp + nums[i], nums[i])
-    mxdp = Math.max(mxdp + nums[i], nums[i])
+    mndp = Math.min(mndp + nums[i], nums[i]) // 求最小和子数组
+    mxdp = Math.max(mxdp + nums[i], nums[i]) // 最大和子数组
     mn = Math.min(mn, mndp)
     mx = Math.max(mx, mxdp)
   }
