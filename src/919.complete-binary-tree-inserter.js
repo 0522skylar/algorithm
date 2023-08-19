@@ -115,3 +115,29 @@ var param_2 = obj.get_root()
 console.log(param_1)
 console.log(param_3)
 console.log(param_2)
+
+
+var minAddToMakeValid = function(s) {
+  let ans = 0;
+  let leftCount = 0;
+  let length = s.length;
+  for (let i = 0; i < length; i++) {
+      const c = s[i];
+      if (c === '(') {
+          leftCount++;
+      } else {
+          if (leftCount > 0) {
+              leftCount--;
+          } else {
+              ans++;
+          }
+      }
+  }
+  ans += leftCount;
+  return ans;
+};
+
+// 作者：力扣官方题解
+// 链接：https://leetcode.cn/problems/minimum-add-to-make-parentheses-valid/solutions/1855025/shi-gua-hao-you-xiao-de-zui-shao-tian-ji-gcxu/
+// 来源：力扣（LeetCode）
+// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
