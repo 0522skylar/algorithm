@@ -117,27 +117,46 @@ console.log(param_3)
 console.log(param_2)
 
 
-var minAddToMakeValid = function(s) {
-  let ans = 0;
-  let leftCount = 0;
-  let length = s.length;
-  for (let i = 0; i < length; i++) {
-      const c = s[i];
-      if (c === '(') {
-          leftCount++;
-      } else {
-          if (leftCount > 0) {
-              leftCount--;
-          } else {
-              ans++;
-          }
+var CBTInserter = function(root) {
+  this.candidate = [];
+  this.root = root;
+
+  const queue = [];
+  queue.push(root);
+
+  while (queue.length) {
+      const node = queue.shift();
+      if (node.left) {
+          queue.push(node.left);
+      }
+      if (node.right) {
+          queue.push(node.right);
+      }
+      if (!(node.left && node.right)) {
+          this.candidate.push(node);
       }
   }
-  ans += leftCount;
-  return ans;
+};
+
+CBTInserter.prototype.insert = function(val) {
+  const child = new TreeNode(val);
+  const node = this.candidate[0];
+  let ret = node.val;
+  if (!node.left) {
+      node.left = child;
+  } else {
+      node.right = child;
+      this.candidate.shift();
+  }
+  this.candidate.push(child);
+  return ret;
+};
+
+CBTInserter.prototype.get_root = function() {
+  return this.root;
 };
 
 // 作者：力扣官方题解
-// 链接：https://leetcode.cn/problems/minimum-add-to-make-parentheses-valid/solutions/1855025/shi-gua-hao-you-xiao-de-zui-shao-tian-ji-gcxu/
+// 链接：https://leetcode.cn/problems/complete-binary-tree-inserter/solutions/1689234/wan-quan-er-cha-shu-cha-ru-qi-by-leetcod-lf8t/
 // 来源：力扣（LeetCode）
 // 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
