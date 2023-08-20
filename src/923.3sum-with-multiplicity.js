@@ -21,4 +21,7 @@ var threeSumMulti = function(arr, target) {
   }
   return ans;
 };
+
+// hash+贪心
+// 最少步骤的解法
 console.log(threeSumMulti([1,1,2,2,3,3,4,4,5,5], 8))
