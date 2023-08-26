@@ -43,3 +43,30 @@ const throwEggs3 = (arr) => {
     }
   }
 }
+
+// 微妙平衡
+const throwEggs4 = (arr) => {
+  let block = 10
+  let count = 0
+  // block(block + 1) / 2 >= 100
+  while(block * block + block < 100 * 2) {
+    block++
+  }
+  // 第一个鸡蛋的尝试
+  let temp = block // 每层区块的最后一个
+  while(temp <= 100) {
+    if (arr[temp] === 1) {
+      count = temp
+      break
+    }
+    --block
+    temp += block
+  }
+
+  // 第二个鸡蛋的尝试
+  for(let i = count - 1; i >= count - block; i--) {
+    if (arr[i] === 0) {
+      return i
+    }
+  }
+}
