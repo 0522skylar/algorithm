@@ -9,3 +9,19 @@ const throwEggs1 = (arr) => {
   }
 }
 
+// 常规二分
+
+const throwEggs2 = (arr) => {
+  let left = 1
+  let right = 100
+  let mid = 0
+  while(left <= right) {
+    mid = Math.floor(left + right) / 2
+    if (arr[mid] === 0) {
+      left = mid + 1
+    } else {
+      right = mid - 1
+    }
+  }
+  return mid
+}
