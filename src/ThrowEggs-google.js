@@ -25,3 +25,21 @@ const throwEggs2 = (arr) => {
   }
   return mid
 }
+
+// 均衡切割
+const throwEggs3 = (arr) => {
+  let count = 0
+  // 第一个鸡蛋
+  for (let i = 1; i < 10; i++) {
+    if (arr[i * 10] === 1) {
+      count = i * 10
+      break
+    }
+  }
+  // 第二个鸡蛋
+  for(let i = count - 1; i >= count - 10; i--) {
+    if (arr[i] !== 1) {
+      return i
+    }
+  }
+}
