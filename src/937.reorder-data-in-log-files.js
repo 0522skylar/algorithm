@@ -36,4 +36,40 @@ var reorderLogFiles = function(logs) {
   return ans
 };
 
-console.log(reorderLogFiles(["dig1 8 1 5 1","let1 art can","dig2 3 6","let2 own kit dig","let3 art zero"]))
+
+
+
+/**
+ * @param {string[]} logs
+ * @return {string[]}
+ */
+var reorderLogFiles1 = function(logs) {
+  logs = logs.map(log => log.split(' '))
+  let nums = [], chars = []
+  for (let log of logs) {
+      if (!isNaN(Number(log[1]))) {
+          nums.push(log.join(' '))
+      } else {
+          chars.push(log)
+      }
+  }
+  chars.sort((a, b) => {
+      const aStr = a.slice(1).join(' '), bStr = b.slice(1).join(' ')
+
+      console.log(aStr,'----', bStr)
+      if (aStr !== bStr) {
+          return aStr > bStr ? 1 : -1
+      } else {
+          return a[0] > b[0] ? 1 : -1
+      }
+  })
+  chars = chars.map(char => char.join(' '))
+  return [...chars, ...nums]
+};
+
+// 作者：月亮
+// 链接：https://leetcode.cn/problems/reorder-data-in-log-files/solutions/2339721/js-zi-dian-zhi-pai-xu-by-yue-liang-ab-xbb4/
+// 来源：力扣（LeetCode）
+// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+console.log(reorderLogFiles1(["dig1 8 1 5 1","let1 art can","dig2 3 6","let2 own kit dig","let3 art zero"]))
