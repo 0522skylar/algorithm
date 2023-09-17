@@ -37,6 +37,54 @@ var largestTimeFromDigits = function(arr) {
   }
   return '';
 }; 
+
+/**
+ * @param {number[]} arr
+ * @return {string}
+ */
+var largestTimeFromDigits = function(arr) {
+  let result = "";
+
+  arr = arr.sort((a, b) => b - a);
+
+  function getTime(times, map, index) {
+      if (result) return;
+      if (index === 4) {
+          result ='' +  times[0] + times[1] + ':' + times[2] + times[3];
+          return;
+      }
+      for (let i = 0; i <= 3; i++) {
+          val = arr[i];
+          if (map[i]) continue;
+          // 符合要求
+          if (!strategy[index](times[index - 1], val)) continue;
+          times.push(val);
+          map[i] = true;
+          getTime(times, map, index + 1);
+          times.pop();
+          map[i] = false;
+      };
+  }
+
+  getTime([], {}, 0);
+
+  return result;
+};
+
+const strategy = {
+  0: (pre, cur) => cur <= 2 ? true: false,
+  1: (pre, cur) => {
+      if (pre === 2 && cur > 3) return false;
+      return true;
+  },
+  2: (pre, cur) => cur <= 5 ? true : false,
+  3: () => true
+}
+
+// 作者：Mancheste
+// 链接：https://leetcode.cn/problems/largest-time-for-given-digits/solutions/2041537/di-gui-by-mancheste-jaq3/
+// 来源：力扣（LeetCode）
+// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 // 取num以下indexArr中能取到的最大值,如果没有则返回false,有就返回那个最大值
 const get = (indexArr, num) => {
   for (let i = num; i >= 0; i--) {
