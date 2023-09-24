@@ -42,3 +42,28 @@ var prisonAfterNDays = function(cells, n) {
 
 console.log(prisonAfterNDays([0,1,0,1,1,0,0,1], 7)) // [0,0,1,1,0,0,0,0]
 console.log(prisonAfterNDays([1,0,0,1,0,0,1,0], 1000000000)) // [0,0,1,1,1,1,1,0]
+
+
+/**
+ * @param {number[]} cells
+ * @param {number} n
+ * @return {number[]}
+ */
+var prisonAfterNDays = function(cells, n) {
+  let arr = [cells.join('')], sign = -1
+  while (n--) {
+      cells = cells.map((cell, i) => i === 0 || i === cells.length - 1 ? 0 : Number(cells[i - 1] === cells[i + 1]))
+      sign = arr.indexOf(cells.join(''))
+      if (sign > -1) {
+          break
+      } else {
+          arr.push(cells.join(''))
+      }
+  }
+  return sign === -1 ? arr[arr.length - 1].split('') : arr[n % (arr.length - sign) + sign].split('')
+};
+
+// 作者：月亮
+// 链接：https://leetcode.cn/problems/prison-cells-after-n-days/solutions/2340820/js-zhuang-kuang-shu-zu-si-lu-by-yue-lian-hkp3/
+// 来源：力扣（LeetCode）
+// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
