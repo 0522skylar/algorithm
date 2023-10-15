@@ -19,4 +19,25 @@ var maxWidthRamp = function(nums) {
   return res
 };
 
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var maxWidthRamp = function(nums) {
+  let arr = []
+  for (let i = 0; i < nums.length; i++) {
+    for (let j = nums.length - 1; j > i; j-- ) {
+      if (nums[i] <= nums[j]) {
+        arr.push(j - i)
+      }
+    }
+  }
+  if (arr.length) {
+    arr.sort((a, b) => b - a)
+    return arr[0]
+  } else {
+    return 0
+  }
+};
+
 console.log(maxWidthRamp([6,0,8,2,1,5])) // 4
