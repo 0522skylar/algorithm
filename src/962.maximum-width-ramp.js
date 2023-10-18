@@ -23,7 +23,7 @@ var maxWidthRamp = function(nums) {
  * @param {number[]} nums
  * @return {number}
  */
-var maxWidthRamp = function(nums) {
+var maxWidthRampAns = function(nums) { // TEL
   let arr = []
   for (let i = 0; i < nums.length; i++) {
     for (let j = nums.length - 1; j > i; j-- ) {
