@@ -30,8 +30,8 @@ const check = (i, j, k, l, arr) => {
 
   let check1 = (y1 - y2) * (x3 - x4) === (x1 - x2) * (y3 - y4)
   let check2 = (y1 - y3) * (x2 - x4) === (x1 - x3) * (y2 - y4)
-  let check3 = (y1 - y2) * (y1 - y3) === (x1 - x2) * (x1 - x3)
-  let check4 = (y1 - y2) * (y2 - y4) === (x1 - x2) * (x2 - x4)
+  let check3 = (y1 - y2) * (y1 - y3) === (x1 - x2) * -(x1 - x3)
+  let check4 = (y1 - y2) * (y2 - y4) === (x1 - x2) * -(x2 - x4)
 
   if (check1 && check2 && check3 && check4) {
     let dxc = x1 - x2
@@ -58,3 +58,5 @@ console.log(minAreaFreeRect([
   [1, 0],
   [2, 0]
 ])) // 1
+
+console.log(minAreaFreeRect([[0,3],[1,2],[3,1],[1,3],[2,1]])) // 0
