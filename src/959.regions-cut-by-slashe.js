@@ -24,12 +24,13 @@ var regionsBySlashes = function(grid) {
   for (let i = 0; i < n; i++) {
     for (let j = 0; j < n; j++) {
       let idx = i * n + j
-      if (i < n - 1) {
+      if (i < n - 1) { // 向右
         const bottom = idx + n
         merge(arr, idx * 4 + 2, bottom * 4);
       }
-      if (j < n - 1) {
+      if (j < n - 1) { // 向下
         const right = idx + 1;
+        // console.log(idx * 4 + 1, right * 4 + 3)
         merge(arr, idx * 4 + 1, right * 4 + 3);
       }
       if (grid[i][j] === '/') {
@@ -62,6 +63,6 @@ var regionsBySlashes = function(grid) {
  * 13 14 15 16
  */
 
-console.log(regionsBySlashes([" /", "/ "])) // 2
-console.log(regionsBySlashes([" /", "  "])) //1
+// console.log(regionsBySlashes([" /", "/ "])) // 2
+// console.log(regionsBySlashes([" /", "  "])) //1
 console.log(regionsBySlashes(["/\\", "\\/"])) //5
