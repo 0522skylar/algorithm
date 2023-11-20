@@ -71,7 +71,7 @@ var levelOrder = function(root) {
 };
 
 // 层次遍历bfs
-function levelOrderV2() {
+function levelOrderV2(root) {
     if(!root) {
         return []
     }
