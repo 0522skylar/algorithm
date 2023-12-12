@@ -2,6 +2,7 @@
  * @param {number[]} nums1
  * @param {number[]} nums2
  * @return {number}
+ * 本题说是求绘制的最大连线数，其实就是求两个字符串的最长公共子序列的长度！
  */
 var maxUncrossedLines = function(nums1, nums2) {
   let dp = new Array(nums1.length + 1).fill(0).map(() => new Array(nums2.length + 1).fill(0))
