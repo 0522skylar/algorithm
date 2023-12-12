@@ -18,4 +18,4 @@ var maxUncrossedLines = function(nums1, nums2) {
   return dp[nums1.length][nums2.length]
 };
 
-console.log(maxUncrossedLines([1,4,2], [1,2,4]))
+console.log(maxUncrossedLines([1,4,2], [1,2,4])) // 2
