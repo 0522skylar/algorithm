@@ -11,5 +11,18 @@
  * @return {number}
  */
 var maxDepth = function(root) {
+  if (root == null) {
+    return 0
+  }
+  let leftV = 0
+  let rightV = 0
+  if (root.left) {
+    leftV = maxDepth(root.left)
+  }
+  if (root.right) {
+    rightV = maxDepth(root.right)
+  }
+
+  return leftV > rightV ? leftV + 1 : rightV + 1
 
 };
