@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      height: 4000px;
+    }
+  </style>
+</head>
+<body>
+    <script>
+      function throttle(func, time) {
+        let inThrottle
+        let timeId = null
+        return function() {
+          const arg = arguments
+          const context = this;
+          if (!inThrottle) {
+            func.apply(this, arg)
+            inThrottle = true
+            timeId && clearTimeout(timeId)
+            timeId = setTimeout(() => {
+              inThrottle = false
+            }, time)
+          }
+        }
+      }
+
+      window.addEventListener('resize', throttle(function(event) {
+        console.log('窗口尺寸改变：', event);
+      }, 1000)); // 1秒内最多执行一次
+
+
+      function debounce(func, wait) {
+        let timeID = null
+        return function() {
+          const content = this
+          const arg = arguments
+          timeID && clearTimeout(timeID)
+          timeID = setTimeout(() => {
+            func.apply(content, arg)
+          }, wait)
+        }
+      }
+
+      window.addEventListener('scroll', debounce(function(event) {
+        console.log('滚动停止：', event);
+      }, 200)); // 滚动停止200ms后执行
+
+    </script>
+</body>
+</html>
