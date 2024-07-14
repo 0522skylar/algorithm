@@ -4,7 +4,7 @@ const quickSort = (arr) => {
     let mid = arr[Math.floor((left + right) / 2)]
     let i = left
     let j = right
-    while(i < j) {
+    while(i <= j) {
       while(arr[i] < mid) {
         i++
       }
