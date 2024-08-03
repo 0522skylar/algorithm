@@ -10,7 +10,7 @@
  * @param {TreeNode} root
  * @return {number[]}
  */
-var rightSideView = function (root) {
+var averageOfLevels = function(root) {
   let ans = []
   let result = []
   let deep = 0;
@@ -21,9 +21,9 @@ var rightSideView = function (root) {
     }
     deep++;
     if (result[deep - 1]) {
-      result[deep - 1].push(root)
+      result[deep - 1].push(root.val)
     } else {
-      result[deep - 1] = [root]
+      result[deep - 1] = [root.val]
     }
     if (root.left) {
       recursion(root.left)
@@ -35,9 +35,13 @@ var rightSideView = function (root) {
     return;
   }
   recursion(root)
-  //   console.log(result, deep)
   for (let i = 0; i < result.length; i++) {
-    ans.push(result[i][result[i].length - 1].val)
+    const arr = result[i]
+    let count = 0
+    for (let j = 0; j < arr.length; j++) {
+      count += arr[j]
+    }
+    ans.push(count / arr.length)
   }
   return ans
 };
